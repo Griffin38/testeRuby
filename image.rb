@@ -1,7 +1,6 @@
 
 class Image
     @@max = 250
-  attr_reader :image
 
   def initialize (columns,rows)
     if( columns >  0 && columns <= @@max && rows >0 && rows <= @@max)
@@ -33,6 +32,7 @@ class Image
     puts "Parametros invalidos"
     return false
   end
+
   def vertical(x,y1,y2,color)
     if(checkParams(y1,x) && checkParams(y2,x))
         for i in y1..y2
@@ -40,6 +40,7 @@ class Image
         end
     end
   end
+  
   def horizontal(x1,x2,y,color)
     if(checkParams(y,x1) && checkParams(y,x2))
         for i in x1..x2
@@ -47,6 +48,7 @@ class Image
         end
     end
   end
+
   def region(y,x,color)
     if(checkParams(x,y))
    oldcolor =  @image[x-1][y-1] 
@@ -56,7 +58,7 @@ class Image
   end
 
   def painter(old,color,x,y)
-    if(x >  0 && x <= @dimR && y >0 && y <= @dimC)
+  if(x >  0 && x <= @dimR && y >0 && y <= @dimC)
     if(@image[x-1][y-2] == old)
         @image[x-1][y-2] = color
         painter(old,color,y-1,x)
@@ -73,6 +75,7 @@ class Image
         @image[x][y-1] = color
         painter(old,color,y,x+1)
     end
-end
+    end
   end
+
 end
